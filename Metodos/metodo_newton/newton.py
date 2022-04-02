@@ -6,14 +6,14 @@ def newton(fx,xi,tol,optiontol,gx,nitera):
     xi = float(xi)
     tol = float(tol)
     if fx.subs(x,xi)==0:
-        return "Xi es raiz"
+        return "Xi is a root"
     else:
         ite = 0
         error = tol+1.0
         tabla.append([ite,xi,round(gx.subs(x,xi),4),error])
         while(error>=tol and ite < nitera):
             if gx.subs(x,xi)==0:
-                return "Indefinicion, division por 0(f'x = 0)", tabla
+                return "Indefinition, divided by 0(f'x = 0)", tabla
             xm = xi-(fx.subs(x,xi)/gx.subs(x,xi))
             if optiontol:
                 error=abs(xm-xi)
@@ -23,13 +23,13 @@ def newton(fx,xi,tol,optiontol,gx,nitera):
             tabla.append([ite,xm,round(gx.subs(x,xm),4),error])
             xi = xm
         if error<tol:
-            return "Xi es raiz con tolerancia",tabla
+            return "Xi is a root with tol",tabla
         else:
-            return "No llegamos", tabla
+            return "we don't arrived", tabla
 #main
 x = sympy.Symbol('x') 
 gx = (-e**(-x))-1                                              
 fdx = (e**(-x))-x
-resultado=newton(fdx,1,5*10**-8,True,gx,10)                                
-print(resultado[0])                                                 
-print(tabulate(resultado[1],headers=["ite", "x", "f'(x)","error"]))
+result=newton(fdx,1,5*10**-8,True,gx,10)                                
+print(result[0])                                                 
+print(tabulate(result[1],headers=["ite", "x", "f'(x)","error"]))
