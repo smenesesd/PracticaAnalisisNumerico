@@ -9,8 +9,14 @@ class metodo_incremental(View):
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name)
 
-def biseccion(request):
-    return HttpResponse("hola perra")
+class metodo_biseccion(View):
+    template_name = 'biseccion/biseccion.html'
 
-def reglafalse(request):
-    return HttpResponse("hola perra")
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
+class metodo_regla_faslsa(View):
+    template_name = 'regla_falsa/reglafalsa.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
