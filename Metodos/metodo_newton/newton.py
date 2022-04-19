@@ -28,7 +28,8 @@ def newton(fx,xi,tol,optiontol,gx,nitera):
             return "we don't arrived", tabla
 #main
 x = sympy.Symbol('x') 
-gx = (-e**(-x))-1                                              
+gx = (-e**(-x))-1  
+print(gx)                                           
 fdx = (e**(-x))-x
 result=newton(fdx,1,5*10**-8,True,gx,10)                                
 print(result[0])                                                 
