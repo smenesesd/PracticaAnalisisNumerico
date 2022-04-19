@@ -1,9 +1,9 @@
 from django.urls import path
-from metodoscerrados.views import home1
+from metodoscerrados import views
 urlpatterns = [
     path(
-        route='registro/', 
-        view = home1,
-        name='registro_premio'
+        route='incremental/', 
+        view = views.metodo_incremental.as_view(),
+        name='metodo incremental'
     )
 ]
