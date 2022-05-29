@@ -12,12 +12,6 @@ class metodo_incremental(View):
 
 class metodo_biseccion(View):
     template_name = 'biseccion/biseccion.html'
-
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name)
-
-class metodo_regla_faslsa(View):
-    template_name = 'regla_falsa/reglafalsa.html'
     form_class = Formulario_biseccion()
 
     def get(self, request, *args, **kwargs):
@@ -33,3 +27,12 @@ class metodo_regla_faslsa(View):
             print(form.cleaned_data['tolerancia'])
             print(form.cleaned_data['opcion'])
         return render(request, self.template_name, {'form':Formulario_biseccion})
+
+    
+
+class metodo_regla_faslsa(View):
+    template_name = 'regla_falsa/reglafalsa.html'
+    
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+    
