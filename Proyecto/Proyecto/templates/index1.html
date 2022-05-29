@@ -3,7 +3,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>R-Oil</title>
+		<title>Analisis</title>
 		<link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 		<link rel="stylesheet" href='{%static "css/style.css" %}'>
 		{% block head_content %}{% endblock %}
@@ -14,30 +14,38 @@
 	<input type="checkbox" id="nav-toggle">
 	<div class="sidebar">
 		<div class="sidebar-brand">
-			<h1><span class="las la-tint" style="color: white;"></span><span>R-Oil</span></h1>
+			<h1><span class="las la-tint" style="color: white;"></span><span>Analisis</span></h1>
 		</div>
 
 		<div class="sidebar-menu">
 			<ul>
 				<li>
-					<a href="{% url 'punto_fijo' %}" class="{% if request.path == '/gestores/registro/' %}active{% endif %}"><span class="las la-chalkboard-teacher"></span>
-					<span>Registro de Admin</span></a>
+					<a href="{% url 'punto_fijo' %}" class="{% if request.path == '/metodosabiertos/punto_fijo/' %}active{% endif %}"><span class="las la-chalkboard-teacher"></span>
+					<span>Punto Fijo</span></a>
 				</li>
 				<li>
-					<a href="{% url 'newton' %}" class="{% if request.path == '/docentes/registro/' %}active{% endif %}"><span class="las la-chalkboard-teacher"></span>
-					<span>Registro de docente</span></a>
+					<a href="{% url 'newton' %}" class="{% if request.path == '/metodosabiertos/newton/' %}active{% endif %}"><span class="las la-chalkboard-teacher"></span>
+					<span>Newton</span></a>
 				</li>
 				<li>
-					<a href="{% url 'raices' %}" class="{% if request.path == '/institucion/registroinst/' %}active{% endif %}"><span class="las la-school"></span>
-					<span>Registro de institucion</span></a>
+					<a href="{% url 'raices' %}" class="{% if request.path == '/metodosabiertos/raices/' %}active{% endif %}"><span class="las la-school"></span>
+					<span>Raices Multiples</span></a>
 				</li>
 				<li>
-					<a href="{% url 'raices' %}" class="{% if request.path == '/informes/global/' %}active{% endif %}"><span class="las la-money-check"></span>
-					<span>Informe Global</span></a>
+					<a href="{% url 'secante' %}" class="{% if request.path == '/metodosabiertos/secante/' %}active{% endif %}"><span class="las la-ban"></span>
+					<span>Secante</span></a>
 				</li>
 				<li>
-					<a href="{% url 'secante' %}" class="{% if request.path == '/institucion/eliminacionInst/' %}active{% endif %}"><span class="las la-ban"></span>
-					<span>Eliminacion Institucion</span></a>
+					<a href="{% url 'incremental' %}" class="{% if request.path == '/metodoscerrados/incremental/' %}active{% endif %}"><span class="las la-money-check"></span>
+					<span>Incremental</span></a>
+				</li>
+				<li>
+					<a href="{% url 'biseccion' %}" class="{% if request.path == '/metodoscerrados/biseccion/' %}active{% endif %}"><span class="las la-money-check"></span>
+					<span>Biseccion</span></a>
+				</li>
+				<li>
+					<a href="{% url 'regla_falsa' %}" class="{% if request.path == '/metodoscerrados/regla/' %}active{% endif %}"><span class="las la-money-check"></span>
+					<span>Regla falsa</span></a>
 				</li>
 			</ul>
 		</div>
@@ -50,22 +58,7 @@
 					<span class="las la-bars"></span>
 				</label>
 			</h2>
-			<h2 id="titulo">Dashboard</h2>
-
-			
-
-			<div class="user-wrapper">
-				<button ><div class="boton">
-					<img src='{% static "imagenes/perez" %}' width="40px" height="40px" alt="">
-					<div>
-						<h4>Proyecto&nbsp;Proyecto</h4>
-						<small>Estudiante</small>
-					</div>
-				</div></button>
-				<ul>
-					<li><a href="{% url 'secante' %}">Salir</a></li>
-				</ul>
-			</div>
+			<h2 id="titulo" style="position: 'center';">Metodos analisis numerico</h2>
 		</header>
 
 		<main>
