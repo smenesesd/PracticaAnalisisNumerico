@@ -1,4 +1,6 @@
+from cmath import sqrt
 import sympy
+from sympy import var
 from tabulate import tabulate
 from math import e
 def fixed_point(fx,xi,tol,optiontol,gx,nitera):
@@ -25,9 +27,12 @@ def fixed_point(fx,xi,tol,optiontol,gx,nitera):
         else:
             return "we don't arrived", table
 #main
-x = sympy.Symbol('x') 
-gx = e**(-x)                                              
-fdx = (e**(-x))-x
-result=fixed_point(fdx,0.5,5*10**-8,True,gx,21)                                
+x = var('x')
+gx = "1/((-0.4)+1.74*log(50*sqrt(x)))"                                         
+fdx = "(1/x)+0.4-1.74*log(50*sqrt(x))"
+f = sympy.sympify(fdx)
+g = sympy.sympify(gx)
+#x = sympy.Symbol('x') 
+result=fixed_point(f,0.1,5*10**-8,True,g,21)                                
 print(result[0])                                                 
 print(tabulate(result[1],headers=["ite", "x", "g(x)","error"]))
