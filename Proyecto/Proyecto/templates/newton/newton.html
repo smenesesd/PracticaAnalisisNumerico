@@ -1,6 +1,97 @@
-<!DOCTYPE html>
-<html>
+{% extends "index1.html" %}
+{% load static %}
+{% block content %}
+    <head>
+        <link rel="stylesheet" href='{% static "css/registrodocentes.css" %}'>
+    </head>
     <body>
-        <h1>Newton</h1>
-    </body>
-</html>
+        <div>
+            <div class="titulo">
+                <h2>Newton</h2>
+            </div>
+            <form action="" method="POST" class= "basic-grey">
+                {% csrf_token %}
+                <div class = "opciones">
+                    <label for="{{form.funcion.id_for_label}}">Funcion fx</label>
+                    <div class="form-warp">
+                        {{form.funcion}}
+                    </div>
+                    {% if form.funcion.errors %}
+                    <ul>
+                        {% for error in form.funcion.errors %}
+                            <li class="errores">{{error}}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                <div class = "opciones">
+                    <label for="{{form.funciong.id_for_label}}">Funcion gx</label>
+                    <div class="form-warp">
+                        {{form.funciong}}
+                    </div>
+                    {% if form.funciong.errors %}
+                    <ul>
+                        {% for error in form.xf.errors %}
+                            <li class="errores">{{error}}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                <div class = "opciones">
+                    <label for="{{form.xi.id_for_label}}">Xi</label>
+                    <div class="form-warp">
+                        {{form.xi}}
+                    </div>
+                    {% if form.xi.errors %}
+                    <ul>
+                        {% for error in form.xi.errors %}
+                            <li class="errores">{{error}}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                <div class = "opciones">
+                    <label for="{{form.iteraciones.id_for_label}}">Numero de iteraciones</label>
+                    <div class="form-warp">
+                        {{form.iteraciones}}
+                    </div>
+                    {% if form.iteraciones.errors %}
+                    <ul>
+                        {% for error in form.iteraciones.errors %}
+                            <li class="errores">{{error}}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                <div class = "opciones">
+                    <label for="{{form.tolerancia.id_for_label}}">tolerancia</label>
+                    <div class="form-warp">
+                        {{form.tolerancia}}
+                    </div>
+                    {% if form.tolerancia.errors %}
+                    <ul>
+                        {% for error in form.tolerancia.errors %}
+                            <li class="errores">{{error}}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                <div class = "opciones">
+                    <label for="{{form.opcion.id_for_label}}">opcion</label>
+                    <div class="form-warp">
+                        {{form.opcion}}
+                    </div>
+                    {% if form.opcion.errors %}
+                    <ul>
+                        {% for error in form.opcion.errors %}
+                            <li class="errores">{{error}}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                <div class="boton">
+                    <input type="submit" value="Enviar">
+                </div>
+            </form>
+        </div>
+{% endblock %}

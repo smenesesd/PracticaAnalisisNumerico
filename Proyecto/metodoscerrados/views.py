@@ -6,12 +6,6 @@ from metodoscerrados.forms import Formulario_regla_falsa
 from metodoscerrados.forms import Formulario_incremental
 
 # Create your views here.
-class metodo_incremental(View):
-    template_name = 'incremental/incremental.html'
-
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name)
-
 class metodo_biseccion(View):
     template_name = 'biseccion/biseccion.html'
     form_class = Formulario_biseccion()
