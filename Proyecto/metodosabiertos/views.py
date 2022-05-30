@@ -6,6 +6,8 @@ from metodosabiertos.forms import Formulario_punto_fijo
 from metodosabiertos.forms import Formulario_newton
 from metodosabiertos.forms import Formulario_raices
 from metodosabiertos.forms import Formulario_secante
+
+from metodosabiertos.puntofijo import fixed_point
 # Create your views here.
 class punto_fijo(View):
     template_name = 'punto_fijo/punto_fijo.html'
@@ -18,12 +20,22 @@ class punto_fijo(View):
     def post(self, request, *args, **kwargs):
         form = Formulario_punto_fijo(request.POST)
         if form.is_valid():
-            print(form.cleaned_data['funcion'])
-            print(form.cleaned_data['funciong'])
-            print(form.cleaned_data['xi'])
-            print(form.cleaned_data['tolerancia'])
-            print(form.cleaned_data['opcion'])
-            print(form.cleaned_data['iteraciones'])
+            print("entre perra")
+            funcion = form.cleaned_data['funcion']
+            funciong = form.cleaned_data['funciong']
+            xi = float(form.cleaned_data['xi'])
+            tolerancia = int(form.cleaned_data['tolerancia'])
+            opcion = form.cleaned_data['opcion']
+            iteraciones = int(form.cleaned_data['iteraciones'])
+            resultado =""
+            try:
+                if opcion == "1":
+                    resultado = fixed_point(funcion,xi,tolerancia,True,funciong, iteraciones)
+                else:
+                    resultado = fixed_point(funcion,xi,tolerancia,False,funciong, iteraciones)
+            except:
+                print("Error en el metodo")
+            print(resultado)
         return render(request, self.template_name, {'form':Formulario_punto_fijo})
 
 class newton(View):
