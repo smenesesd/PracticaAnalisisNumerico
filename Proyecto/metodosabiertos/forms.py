@@ -22,7 +22,6 @@ class Formulario_newton(forms.Form):
 class Formulario_raices(forms.Form):
     opciones = [('1','Error absoluto'),('2','Error Relativo')]
     funcion = forms.CharField(label='Funcion fx', required=True, widget=forms.TextInput(attrs={'placeholder':'Ingrese la funcion fx...'}))
-    funciong = forms.CharField(label='Funcion gx', required=True, widget=forms.TextInput(attrs={'placeholder':'Ingrese la funcion gx...'}))
     funcionfx1 = forms.CharField(label='Funcion fx1', required=True, widget=forms.TextInput(attrs={'placeholder':'Ingrese la funcion fx1...'}))
     funcionfx2 = forms.CharField(label='Funcion fx2', required=True, widget=forms.TextInput(attrs={'placeholder':'Ingrese la funcion fx2...'}))
     xi = forms.FloatField(label='Xi', required=True, widget=forms.NumberInput(attrs={'placeholder':'Ingrese el x inicial...','step':'0.0001'}))

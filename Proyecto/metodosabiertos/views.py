@@ -57,7 +57,6 @@ class raices(View):
         form = Formulario_raices(request.POST)
         if form.is_valid():
             print(form.cleaned_data['funcion'])
-            print(form.cleaned_data['funciong'])
             print(form.cleaned_data['funcionfx1'])
             print(form.cleaned_data['funcionfx2'])
             print(form.cleaned_data['xi'])
