@@ -11,6 +11,7 @@ from metodoscerrados.incremental import incremental
 # Create your views here.
 class metodo_biseccion(View):
     template_name = 'biseccion/biseccion.html'
+    template_response = 'biseccion/biseccion_response.html'
     form_class = Formulario_biseccion()
 
     def get(self, request, *args, **kwargs):
@@ -23,7 +24,7 @@ class metodo_biseccion(View):
             funcion = form.cleaned_data['funcion']
             xi = float(form.cleaned_data['xi'])
             xf = float(form.cleaned_data['xf'])
-            tolerancia = int(form.cleaned_data['tolerancia'])
+            tolerancia = float(form.cleaned_data['tolerancia'])
             opcion = form.cleaned_data['opcion']
             resultado =""
             try:
@@ -31,6 +32,7 @@ class metodo_biseccion(View):
                     resultado = biseccion(funcion,xi,xf,tolerancia,True)
                 else:
                     resultado = biseccion(funcion,xi,xf,tolerancia,True)
+                return render(request,self.template_response, {'tabla':resultado[1], 'resultado':resultado[0]})
             except:
                 print("Error en el metodo")
             print(resultado)
