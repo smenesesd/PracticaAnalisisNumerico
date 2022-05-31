@@ -10,8 +10,8 @@ from metodosabiertos.forms import Formulario_secante
 
 from metodosabiertos.puntofijo import fixed_point
 from metodosabiertos.newton import newton
-from metodosabiertos.raices import raices
-from metodosabiertos.secante import secante
+from metodosabiertos import raices
+from metodosabiertos import secante
 # Create your views here.
 class punto_fijo(View):
     template_name = 'punto_fijo/punto_fijo.html'
@@ -45,6 +45,7 @@ class punto_fijo(View):
 
 class newton(View):
     template_name = 'newton/newton.html'
+    template_response = 'newton/newton_response.html'
     form_class = Formulario_newton()
 
     def get(self,request,*args,**kwargs):
@@ -54,18 +55,20 @@ class newton(View):
     def post(self, request, *args, **kwargs):
         form = Formulario_newton(request.POST)
         if form.is_valid():
-            funcion = form.cleaned_data['funcion']
-            funciong = form.cleaned_data['funciong']
-            xi = float(form.cleaned_data['xi'])
-            tolerancia = int(form.cleaned_data['tolerancia'])
-            opcion = form.cleaned_data['opcion']
-            iteraciones = form.cleaned_data['iteraciones']
+            
+            print(form.cleaned_data['funcion'])
+            print(form.cleaned_data['funciong'])
+            print(float(form.cleaned_data['xi']))
+            print(float(form.cleaned_data['tolerancia']))
+            print(form.cleaned_data['opcion'])
+            print(int(form.cleaned_data['iteraciones']))
             resultado = ""
             try:   
                 if opcion == "1":
                     resultado = newton(funcion,xi,tolerancia,True,funciong,iteraciones)
                 else:
                     resultado = newton(funcion,xi,tolerancia,False,funciong,iteraciones)
+                return render(request,self.template_response, {'tabla': resultado[1], 'resultado':resultado[0]})
             except:
                 print("Error en el metodo")
             print(resultado)
