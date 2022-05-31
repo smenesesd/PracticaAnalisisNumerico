@@ -11,6 +11,7 @@ from metodosabiertos.puntofijo import fixed_point
 # Create your views here.
 class punto_fijo(View):
     template_name = 'punto_fijo/punto_fijo.html'
+    template_response = 'punto_fijo/punto_fijo_response.html'
     form_class = Formulario_punto_fijo()
 
     def get(self, request, *args, **kwargs):
@@ -19,20 +20,20 @@ class punto_fijo(View):
 
     def post(self, request, *args, **kwargs):
         form = Formulario_punto_fijo(request.POST)
-        if form.is_valid():
-            print("entre perra")
-            funcion = form.cleaned_data['funcion']
+        if form.is_valid():                                                 #Si el formulario es valido
+            funcion = form.cleaned_data['funcion']                          #Savamos la funcion y todas las partes
             funciong = form.cleaned_data['funciong']
             xi = float(form.cleaned_data['xi'])
             tolerancia = int(form.cleaned_data['tolerancia'])
             opcion = form.cleaned_data['opcion']
             iteraciones = int(form.cleaned_data['iteraciones'])
             resultado =""
-            try:
-                if opcion == "1":
+            try:                                                                                    #Se trata de ejecutar el formulario
+                if opcion == "1":                                                                   #En caso de ser opcion  de errrpr absoluto
                     resultado = fixed_point(funcion,xi,tolerancia,True,funciong, iteraciones)
-                else:
+                else:                                                                               #En caso de ser opcion de error relativo
                     resultado = fixed_point(funcion,xi,tolerancia,False,funciong, iteraciones)
+                return render(request,self.template_response, {'tabla':resultado[1], 'resultado':resultado[0]} )              #Se envia la prespuesta
             except:
                 print("Error en el metodo")
             print(resultado)

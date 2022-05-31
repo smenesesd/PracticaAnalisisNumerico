@@ -7,7 +7,7 @@ def fixed_point(fx,xi,tol,optiontol,gx,nitera):
     x = var('x')
     fx = sympy.sympify(fx)
     gx = sympy.sympify(gx)
-    table = []
+    table = [["ite", "x", "g(x)","error"]]
     xi = float(xi)
     tol = float(tol)
     if fx.subs(x,xi)==0:
