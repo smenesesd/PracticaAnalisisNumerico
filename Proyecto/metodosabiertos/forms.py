@@ -26,7 +26,7 @@ class Formulario_raices(forms.Form):
     funcionfx2 = forms.CharField(label='Funcion fx2', required=True, widget=forms.TextInput(attrs={'placeholder':'Ingrese la funcion fx2...'}))
     xi = forms.FloatField(label='Xi', required=True, widget=forms.NumberInput(attrs={'placeholder':'Ingrese el x inicial...','step':'0.0001'}))
     iteraciones = forms.IntegerField(label='iteacion', required=True, widget=forms.NumberInput(attrs={'placeholder':'Ingrese el numero de iteraciones...'}))
-    tolerancia = forms.FloatField(label='Xi', required=True, widget=forms.NumberInput(attrs={'placeholder':'Ingrese la tolerancia...','step':'0.0001'}))
+    tolerancia = forms.FloatField(label='Tolerancia', required=True, widget=forms.NumberInput(attrs={'placeholder':'Ingrese la tolerancia...','step':'0.0001'}))
     opcion = forms.ChoiceField(label='opcion', required=True, widget=forms.RadioSelect, choices=opciones)
 
 class Formulario_secante(forms.Form):
