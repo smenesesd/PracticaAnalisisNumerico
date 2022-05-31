@@ -1,4 +1,5 @@
 from asyncio.format_helpers import _format_callback_source
+from tkinter.tix import Tree
 from django.shortcuts import render, HttpResponse
 from django.views import View
 #from Proyecto.metodosabiertos.forms import Formulario_newton
@@ -8,6 +9,9 @@ from metodosabiertos.forms import Formulario_raices
 from metodosabiertos.forms import Formulario_secante
 
 from metodosabiertos.puntofijo import fixed_point
+from metodosabiertos.newton import newton
+from metodosabiertos.raices import raices
+from metodosabiertos.secante import secante
 # Create your views here.
 class punto_fijo(View):
     template_name = 'punto_fijo/punto_fijo.html'
@@ -50,12 +54,21 @@ class newton(View):
     def post(self, request, *args, **kwargs):
         form = Formulario_newton(request.POST)
         if form.is_valid():
-            print(form.cleaned_data['funcion'])
-            print(form.cleaned_data['funciong'])
-            print(form.cleaned_data['xi'])
-            print(form.cleaned_data['tolerancia'])
-            print(form.cleaned_data['opcion'])
-            print(form.cleaned_data['iteraciones'])
+            funcion = form.cleaned_data['funcion']
+            funciong = form.cleaned_data['funciong']
+            xi = float(form.cleaned_data['xi'])
+            tolerancia = int(form.cleaned_data['tolerancia'])
+            opcion = form.cleaned_data['opcion']
+            iteraciones = form.cleaned_data['iteraciones']
+            resultado = ""
+            try:   
+                if opcion == "1":
+                    resultado = newton(funcion,xi,tolerancia,True,funciong,iteraciones)
+                else:
+                    resultado = newton(funcion,xi,tolerancia,False,funciong,iteraciones)
+            except:
+                print("Error en el metodo")
+            print(resultado)
         return render(request, self.template_name, {'form':Formulario_newton})
 
 class raices(View):
@@ -69,13 +82,22 @@ class raices(View):
     def post(self, request, *args, **kwargs):
         form = Formulario_raices(request.POST)
         if form.is_valid():
-            print(form.cleaned_data['funcion'])
-            print(form.cleaned_data['funcionfx1'])
-            print(form.cleaned_data['funcionfx2'])
-            print(form.cleaned_data['xi'])
-            print(form.cleaned_data['tolerancia'])
-            print(form.cleaned_data['opcion'])
-            print(form.cleaned_data['iteraciones'])
+            funcion = form.cleaned_data['funcion']
+            fx1 = form.cleaned_data['funcionfx1']
+            fx2 = form.cleaned_data['funcionfx2']
+            xi = float(form.cleaned_data['xi'])
+            tolerancia = int(form.cleaned_data['tolerancia'])
+            opcion = form.cleaned_data['opcion']
+            iteraciones = form.cleaned_data['iteraciones']
+            resultado = ""
+            try:
+                if opcion == "1":
+                    resultado = raices(funcion,fx1,fx2,xi,tolerancia,True,iteraciones)
+                else:
+                    resultado = raices(funcion,fx1,fx2,xi,tolerancia,False,iteraciones)
+            except:
+                print("Error en el metodo")
+            print(resultado)
         return render(request, self.template_name, {'form':Formulario_raices})
 class secante(View):
     template_name = 'secante/secante.html'
@@ -88,10 +110,19 @@ class secante(View):
     def post(self, request, *args, **kwargs):
         form = Formulario_secante(request.POST)
         if form.is_valid():
-            print(form.cleaned_data['funcion'])
-            print(form.cleaned_data['x1'])
-            print(form.cleaned_data['x2'])
-            print(form.cleaned_data['tolerancia'])
-            print(form.cleaned_data['opcion'])
-            print(form.cleaned_data['iteraciones'])
+            funcion = form.cleaned_data['funcion']
+            x1 = float(form.cleaned_data['x1'])
+            x2 = float(form.cleaned_data['x2'])
+            tolerancia = int(form.cleaned_data['tolerancia'])
+            opcion = form.cleaned_data['opcion']
+            iteraciones = form.cleaned_data['iteraciones']
+            resultado = ""
+            try:
+                if opcion == "1":
+                    resultado = secante(funcion,x1,x2,tolerancia,True,iteraciones)
+                else:
+                    resultado = secante(funcion,x1,x2,tolerancia,False,iteraciones)
+            except:
+                print("Error en el metodo")
+            print(resultado)
         return render(request, self.template_name, {'form':Formulario_secante})
