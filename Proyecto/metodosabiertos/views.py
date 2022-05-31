@@ -78,13 +78,22 @@ class raices(View):
     def post(self, request, *args, **kwargs):
         form = Formulario_raices(request.POST)
         if form.is_valid():
-            print(form.cleaned_data['funcion'])
-            print(form.cleaned_data['funcionfx1'])
-            print(form.cleaned_data['funcionfx2'])
-            print(form.cleaned_data['xi'])
-            print(form.cleaned_data['tolerancia'])
-            print(form.cleaned_data['opcion'])
-            print(form.cleaned_data['iteraciones'])
+            funcion = form.cleaned_data['funcion']
+            fx1 = form.cleaned_data['funcionfx1']
+            fx2 = form.cleaned_data['funcionfx2']
+            xi = float(form.cleaned_data['xi'])
+            tolerancia = int(form.cleaned_data['tolerancia'])
+            opcion = form.cleaned_data['opcion']
+            iteraciones = form.cleaned_data['iteraciones']
+            resultado = ""
+            try:
+                if opcion == "1":
+                    resultado = fixed_point(funcion,fx1,fx2,xi,tolerancia,True,iteraciones)
+                else:
+                    resultado = fixed_point(funcion,fx1,fx2,xi,tolerancia,False,iteraciones)
+            except:
+                print("Error en el metodo")
+            print(resultado)
         return render(request, self.template_name, {'form':Formulario_raices})
 class secante(View):
     template_name = 'secante/secante.html'
