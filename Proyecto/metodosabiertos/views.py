@@ -106,10 +106,19 @@ class secante(View):
     def post(self, request, *args, **kwargs):
         form = Formulario_secante(request.POST)
         if form.is_valid():
-            print(form.cleaned_data['funcion'])
-            print(form.cleaned_data['x1'])
-            print(form.cleaned_data['x2'])
-            print(form.cleaned_data['tolerancia'])
-            print(form.cleaned_data['opcion'])
-            print(form.cleaned_data['iteraciones'])
+            funcion = form.cleaned_data['funcion']
+            x1 = float(form.cleaned_data['x1'])
+            x2 = float(form.cleaned_data['x2'])
+            tolerancia = int(form.cleaned_data['tolerancia'])
+            opcion = form.cleaned_data['opcion']
+            iteraciones = form.cleaned_data['iteraciones']
+            resultado = ""
+            try:
+                if opcion == "1":
+                    resultado = fixed_point(funcion,x1,x2,tolerancia,True,iteraciones)
+                else:
+                    resultado = fixed_point(funcion,x1,x2,tolerancia,False,iteraciones)
+            except:
+                print("Error en el metodo")
+            print(resultado)
         return render(request, self.template_name, {'form':Formulario_secante})
