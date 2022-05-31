@@ -60,7 +60,7 @@ class newton(View):
             funcion = form.cleaned_data['funcion']
             funciong = form.cleaned_data['funciong']
             xi = float(form.cleaned_data['xi'])
-            tolerancia = float(form.cleaned_data['tolerancia'])
+            tolerancia = float(form.cleaned_data['tolerancia']) 
             opcion = form.cleaned_data['opcion']
             iteraciones = int(form.cleaned_data['iteraciones'])
             resultado = ""

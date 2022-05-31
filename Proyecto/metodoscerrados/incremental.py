@@ -1,10 +1,13 @@
 import sympy 
 from tabulate import tabulate
+from sympy import var
 
 def incremental(fx, xi, maxite, difx):
+    x = var('x')
+    fx = sympy.sympify(fx)
     xi = float(xi)
     difx = float(difx)
-    table = []                                                                    
+    table = ["Ite", "x", "F(x)"]                                                                    
     if fx.subs(x, xi)==0:                                           
         return "xi is a root ",table
     else:                                                           
@@ -26,8 +29,8 @@ def incremental(fx, xi, maxite, difx):
             return "I dont find a root in the max ite",table
 
 #Main
-x = sympy.Symbol('x')                                               
-fdx = x**3-7.51*x**2+18.4239*x-14.8331
-result=incremental(fdx,0,250,0.1)                                
-print(result[0])                                                 
-print(tabulate(result[1],headers=["Ite", "x", "F(x)"]))   
+#x = sympy.Symbol('x')                                               
+#fdx = x**3-7.51*x**2+18.4239*x-14.8331
+#result=incremental(fdx,0,250,0.1)                                
+#print(result[0])                                                 
+#print(tabulate(result[1],headers=["Ite", "x", "F(x)"]))   

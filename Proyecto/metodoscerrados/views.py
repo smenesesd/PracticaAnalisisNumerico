@@ -71,6 +71,7 @@ class metodo_regla_faslsa(View):
 
 class metodo_incremental(View):
     template_name = 'incremental/incremental.html'
+    template_response = 'incremental/incremental_response.html'
     form_class = Formulario_incremental()
     
     def get(self, request, *args, **kwargs):
@@ -80,10 +81,17 @@ class metodo_incremental(View):
     def post(self, request, *args, **kwargs):
         form = Formulario_incremental(request.POST)
         if form.is_valid():
-            print(form.cleaned_data['funcion'])
-            print(form.cleaned_data['xi'])
-            print(form.cleaned_data['maxite'])
-            print(form.cleaned_data['difx'])
+            funcion = form.cleaned_data['funcion']
+            xi = float(form.cleaned_data['xi'])
+            maxite = int(form.cleaned_data['maxite'])
+            difx = float(form.cleaned_data['difx'])
+            resultado = ""
+            try:
+                resultado = incremental(funcion,xi,maxite,difx)
+                return render(request,self.template_response, {'tabla': resultado[1], 'resultado':resultado[0]})
+            except:
+                print("Error en el metodo")
+            print(resultado)
         return render(request, self.template_name, {'form':Formulario_incremental})
 
     
