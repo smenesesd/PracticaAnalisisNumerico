@@ -9,7 +9,7 @@ from metodosabiertos.forms import Formulario_raices
 from metodosabiertos.forms import Formulario_secante
 
 from metodosabiertos.puntofijo import fixed_point
-from metodosabiertos import newton
+from metodosabiertos.newton import m_newton
 from metodosabiertos import raices
 from metodosabiertos import secante
 # Create your views here.
@@ -28,7 +28,7 @@ class punto_fijo(View):
             funcion = form.cleaned_data['funcion']                          #Savamos la funcion y todas las partes
             funciong = form.cleaned_data['funciong']
             xi = float(form.cleaned_data['xi'])
-            tolerancia = int(form.cleaned_data['tolerancia'])
+            tolerancia = float(form.cleaned_data['tolerancia'])
             opcion = form.cleaned_data['opcion']
             iteraciones = int(form.cleaned_data['iteraciones'])
             resultado =""
@@ -55,24 +55,20 @@ class newton(View):
     def post(self, request, *args, **kwargs):
         form = Formulario_newton(request.POST)
         if form.is_valid():
-            funcion = form.cleaned_data['funcion']                          #Savamos la funcion y todas las partes
+            
+            funcion = form.cleaned_data['funcion']
             funciong = form.cleaned_data['funciong']
             xi = float(form.cleaned_data['xi'])
-            tolerancia = int(form.cleaned_data['tolerancia'])
+            tolerancia = float(form.cleaned_data['tolerancia'])
             opcion = form.cleaned_data['opcion']
             iteraciones = int(form.cleaned_data['iteraciones'])
-            #print(form.cleaned_data['funcion'])
-           # print(form.cleaned_data['funciong'])
-            #print(float(form.cleaned_data['xi']))
-            #print(float(form.cleaned_data['tolerancia']))
-            #print(form.cleaned_data['opcion'])
-            #print(int(form.cleaned_data['iteraciones']))
             resultado = ""
+            print(funcion,funciong,xi, tolerancia, opcion, iteraciones)
             try:   
                 if opcion == "1":
-                    resultado = newton(funcion,xi,tolerancia,True,funciong,iteraciones)
+                    resultado = m_newton(funcion,xi,tolerancia,True,funciong,iteraciones)
                 else:
-                    resultado = newton(funcion,xi,tolerancia,False,funciong,iteraciones)
+                    resultado = m_newton(funcion,xi,tolerancia,False,funciong,iteraciones)
                 return render(request,self.template_response, {'tabla': resultado[1], 'resultado':resultado[0]})
             except:
                 print("Error en el metodo")

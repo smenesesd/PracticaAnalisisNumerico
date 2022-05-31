@@ -3,16 +3,18 @@ import sympy
 from sympy import sympify, var
 from tabulate import tabulate
 from math import e
-def newton(fx,xi,tol,optiontol,gx,nitera):
+def m_newton(fx,xi,tol,optiontol,gx,nitera):
     x = var('x')
     fx = sympy.sympify(fx)
     gx = sympy.sympify(gx)
+    print(fx, gx)
     tabla = [["ite", "x", "f'(x)","error"]]
     xi = float(xi)
     tol = float(tol)
     if fx.subs(x,xi)==0:
         return "Xi is a root"
     else:
+        print("epale")
         ite = 0
         error = tol+1.0
         tabla.append([ite,xi,round(gx.subs(x,xi),4),error])
