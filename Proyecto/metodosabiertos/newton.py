@@ -1,8 +1,13 @@
+from cmath import sqrt
 import sympy
+from sympy import sympify, var
 from tabulate import tabulate
 from math import e
 def newton(fx,xi,tol,optiontol,gx,nitera):
-    tabla = []
+    x = var('x')
+    fx = sympy.sympify(fx)
+    gx = sympy.sympify(gx)
+    tabla = [["ite", "x", "f'(x)","error"]]
     xi = float(xi)
     tol = float(tol)
     if fx.subs(x,xi)==0:
@@ -27,10 +32,10 @@ def newton(fx,xi,tol,optiontol,gx,nitera):
         else:
             return "we don't arrived", tabla
 #main
-x = sympy.Symbol('x') 
-gx = (-e**(-x))-1  
-print(gx)                                           
-fdx = (e**(-x))-x
-result=newton(fdx,1,5*10**-8,True,gx,10)                                
-print(result[0])                                                 
-print(tabulate(result[1],headers=["ite", "x", "f'(x)","error"]))
+#x = sympy.Symbol('x') 
+#gx = (-e**(-x))-1  
+#print(gx)                                           
+#fdx = (e**(-x))-x
+#result=newton(fdx,1,5*10**-8,True,gx,10)                                
+#print(result[0])                                                 
+#print(tabulate(result[1],headers=["ite", "x", "f'(x)","error"]))

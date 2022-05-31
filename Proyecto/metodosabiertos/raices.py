@@ -31,11 +31,11 @@ def root_m(fx,xi,fx1,fx2,tol,optiontol,nitera):
         else:
             return "we don't arrived", table
 #main
-x = sympy.Symbol('x') 
+#x = sympy.Symbol('x') 
 #fdx1 = x*e**(x) 
 #fdx2 = x*e**(x)+e**(x)                                            
 #fdx = x*e**(x)-e**(x)+1
 
-result=root_m(fdx,0.5,fdx1,fdx2,0,True,10)                                
-print(result[0])                                                 
-print(tabulate(result[1],headers=["ite", "x", "f(x)","f'(x)","f''(x)","error"]))
+#result=root_m(fdx,0.5,fdx1,fdx2,0,True,10)                                
+#print(result[0])                                                 
+#print(tabulate(result[1],headers=["ite", "x", "f(x)","f'(x)","f''(x)","error"]))
