@@ -17,11 +17,20 @@ class metodo_biseccion(View):
     def post(self, request, *args, **kwargs):
         form = Formulario_biseccion(request.POST)
         if form.is_valid():
-            print(form.cleaned_data['funcion'])
-            print(form.cleaned_data['xi'])
-            print(form.cleaned_data['xf'])
-            print(form.cleaned_data['tolerancia'])
-            print(form.cleaned_data['opcion'])
+            funcion = form.cleaned_data['funcion']
+            xi = float(form.cleaned_data['xi'])
+            xf = float(form.cleaned_data['xf'])
+            tolerancia = int(form.cleaned_data['tolerancia'])
+            opcion = form.cleaned_data['opcion']
+            resultado = ""
+            try:
+                if opcion == "1":
+                    resultado = fixed_point(funcion,xi,xf,tolerancia,True)
+                else:
+                    resultado = fixed_point(funcion,xi,xf,tolerancia,True)
+            except:
+                print("Error en el metodo")
+            print(resultado)
         return render(request, self.template_name, {'form':Formulario_biseccion})
 
     

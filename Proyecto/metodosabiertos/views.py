@@ -9,6 +9,9 @@ from metodosabiertos.forms import Formulario_raices
 from metodosabiertos.forms import Formulario_secante
 
 from metodosabiertos.puntofijo import fixed_point
+from metodosabiertos.newton import newton
+from metodosabiertos.raices import raices
+from metodosabiertos.secante import secante
 # Create your views here.
 class punto_fijo(View):
     template_name = 'punto_fijo/punto_fijo.html'
@@ -59,9 +62,9 @@ class newton(View):
             resultado = ""
             try:   
                 if opcion == "1":
-                    resultado = fixed_point(funcion,xi,tolerancia,True,funciong,iteraciones)
+                    resultado = newton(funcion,xi,tolerancia,True,funciong,iteraciones)
                 else:
-                    resultado = fixed_point(funcion,xi,tolerancia,False,funciong,iteraciones)
+                    resultado = newton(funcion,xi,tolerancia,False,funciong,iteraciones)
             except:
                 print("Error en el metodo")
             print(resultado)
@@ -88,9 +91,9 @@ class raices(View):
             resultado = ""
             try:
                 if opcion == "1":
-                    resultado = fixed_point(funcion,fx1,fx2,xi,tolerancia,True,iteraciones)
+                    resultado = raices(funcion,fx1,fx2,xi,tolerancia,True,iteraciones)
                 else:
-                    resultado = fixed_point(funcion,fx1,fx2,xi,tolerancia,False,iteraciones)
+                    resultado = raices(funcion,fx1,fx2,xi,tolerancia,False,iteraciones)
             except:
                 print("Error en el metodo")
             print(resultado)
@@ -115,9 +118,9 @@ class secante(View):
             resultado = ""
             try:
                 if opcion == "1":
-                    resultado = fixed_point(funcion,x1,x2,tolerancia,True,iteraciones)
+                    resultado = secante(funcion,x1,x2,tolerancia,True,iteraciones)
                 else:
-                    resultado = fixed_point(funcion,x1,x2,tolerancia,False,iteraciones)
+                    resultado = secante(funcion,x1,x2,tolerancia,False,iteraciones)
             except:
                 print("Error en el metodo")
             print(resultado)
