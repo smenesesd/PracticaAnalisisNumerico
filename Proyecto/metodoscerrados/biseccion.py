@@ -1,8 +1,11 @@
 import sympy 
 from tabulate import tabulate
 from math import e
+from sympy import var
 def biseccion(xi,fx,xf,tol,optiontol):
-    table = []
+    x = var('x')
+    fx = sympy.sympify(fx)
+    table = [["xi", "f(xi)", "xm","f(xm)","xf","f(xf)","error"]]
     xi = float(xi)
     xf = float(xf)
     tol = float(tol)
@@ -12,7 +15,7 @@ def biseccion(xi,fx,xf,tol,optiontol):
         return "Interval not valid"
     else:
         xm = (xi+xf)/2
-        error=tol+1.0
+        error = tol+1.0
         if optiontol:
             error=abs(xm-xi)
         else:
@@ -35,11 +38,11 @@ def biseccion(xi,fx,xf,tol,optiontol):
             return "Xm is a root with tol",table
 
 #Main
-x = sympy.Symbol('x')                                               
-fdx = x**3-7.51*x**2+18.4239*x-14.8331
-result=biseccion(3,fdx,3.5,5*10**-5,False)                                
-print(result[0])                                                 
-print(tabulate(result[1],headers=["xi", "f(xi)", "xm","f(xm)","xf","f(xf)","error"]))
+#x = sympy.Symbol('x')                                               
+#fdx = x**3-7.51*x**2+18.4239*x-14.8331
+#result=biseccion(3,fdx,3.5,5*10**-5,False)                                
+#print(result[0])                                                 
+#print(tabulate(result[1],headers=["xi", "f(xi)", "xm","f(xm)","xf","f(xf)","error"]))
 
 
 

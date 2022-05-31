@@ -1,8 +1,13 @@
 import sympy
 from tabulate import tabulate
+from sympy import var
 from math import e
 def root_m(fx,xi,fx1,fx2,tol,optiontol,nitera):
-    table = []
+    x = var('x')
+    fx = sympy.sympify(fx)
+    fx1 = sympy.sympify(fx1)
+    fx2 = sympy.sympify(fx2)
+    table = [["ite", "x", "f(x)","f'(x)","f''(x)","error"]]
     xi = float(xi)
     tol = float(tol)
     if fx.subs(x,xi)==0:
