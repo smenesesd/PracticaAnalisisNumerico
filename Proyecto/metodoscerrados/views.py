@@ -42,6 +42,7 @@ class metodo_biseccion(View):
 
 class metodo_regla_faslsa(View):
     template_name = 'regla_falsa/reglafalsa.html'
+    template_response = 'regla_falsa/reglafalsa_response'
     form_class = Formulario_regla_falsa()
     
     def get(self, request, *args, **kwargs):
@@ -54,7 +55,7 @@ class metodo_regla_faslsa(View):
             funcion = form.cleaned_data['funcion']
             xi = float(form.cleaned_data['xi'])
             xf = float(form.cleaned_data['xf'])
-            tolerancia = int(form.cleaned_data['tolerancia'])
+            tolerancia = float(form.cleaned_data['tolerancia'])
             opcion = form.cleaned_data['opcion']
             resultado = ""
             try: 
@@ -62,6 +63,7 @@ class metodo_regla_faslsa(View):
                     resultado = false_position_method(funcion,xi,xf,tolerancia,True)
                 else:
                     resultado = false_position_method(funcion,xi,xf,tolerancia,False)
+                return render(request,self.template_response, {'tabla': resultado[1], 'resultado':resultado[0]})
             except:
                 print("Error en el metodo")
             print(resultado)
