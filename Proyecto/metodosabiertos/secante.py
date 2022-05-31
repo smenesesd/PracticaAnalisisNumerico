@@ -1,8 +1,11 @@
 import sympy
 from tabulate import tabulate
+from sympy import var
 from math import e
 def secant(fx,x1,x2,tol,optiontol,nitera):
-    table = []
+    x = var('x')
+    fx = sympy.sympify(fx)
+    table = ["ite", "x", "f(x)","error"]
     x1 = float(x1)
     x2 = float(x2)
     tol = float(tol)
@@ -38,9 +41,9 @@ def secant(fx,x1,x2,tol,optiontol,nitera):
         else:
             return "we don't arrived", table
 #main
-x = sympy.Symbol('x') 
-gx = (-e**(-x))-1                                              
-fdx = (e**(-x))-x
-result=secant(fdx,1,0,0,True,10)                                
-print(result[0])                                                 
-print(tabulate(result[1],headers=["ite", "x", "f(x)","error"]))
+#x = sympy.Symbol('x') 
+#gx = (-e**(-x))-1                                              
+#fdx = (e**(-x))-x
+#result=secant(fdx,1,0,0,True,10)                                
+#print(result[0])                                                 
+#print(tabulate(result[1],headers=["ite", "x", "f(x)","error"]))
