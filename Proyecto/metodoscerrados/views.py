@@ -5,6 +5,9 @@ from metodoscerrados.forms import Formulario_biseccion
 from metodoscerrados.forms import Formulario_regla_falsa
 from metodoscerrados.forms import Formulario_incremental
 
+from metodoscerrados.biseccion import biseccion
+from metodoscerrados.regla_falsa import false_position_method
+from metodoscerrados.incremental import incremental
 # Create your views here.
 class metodo_biseccion(View):
     template_name = 'biseccion/biseccion.html'
@@ -22,12 +25,12 @@ class metodo_biseccion(View):
             xf = float(form.cleaned_data['xf'])
             tolerancia = int(form.cleaned_data['tolerancia'])
             opcion = form.cleaned_data['opcion']
-            resultado = ""
+            resultado =""
             try:
                 if opcion == "1":
-                    resultado = fixed_point(funcion,xi,xf,tolerancia,True)
+                    resultado = biseccion(funcion,xi,xf,tolerancia,True)
                 else:
-                    resultado = fixed_point(funcion,xi,xf,tolerancia,True)
+                    resultado = biseccion(funcion,xi,xf,tolerancia,True)
             except:
                 print("Error en el metodo")
             print(resultado)
@@ -46,11 +49,20 @@ class metodo_regla_faslsa(View):
     def post(self, request, *args, **kwargs):
         form = Formulario_regla_falsa(request.POST)
         if form.is_valid():
-            print(form.cleaned_data['funcion'])
-            print(form.cleaned_data['xi'])
-            print(form.cleaned_data['xf'])
-            print(form.cleaned_data['tolerancia'])
-            print(form.cleaned_data['opcion'])
+            funcion = form.cleaned_data['funcion']
+            xi = float(form.cleaned_data['xi'])
+            xf = float(form.cleaned_data['xf'])
+            tolerancia = int(form.cleaned_data['tolerancia'])
+            opcion = form.cleaned_data['opcion']
+            resultado = ""
+            try: 
+                if opcion == "1":
+                    resultado = false_position_method(funcion,xi,xf,tolerancia,True)
+                else:
+                    resultado = false_position_method(funcion,xi,xf,tolerancia,False)
+            except:
+                print("Error en el metodo")
+            print(resultado)
         return render(request, self.template_name, {'form':Formulario_regla_falsa})
 
 class metodo_incremental(View):
