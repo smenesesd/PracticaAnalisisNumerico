@@ -106,5 +106,15 @@
                     <input type="submit" value="Enviar">
                 </div>
             </form>
+            {% if messages %}
+            {% for m in messages %}
+            <script>
+                Swal.fire({
+                    "text": "{{m}}",
+                    "icon":"warning"
+                })
+            </script>
+            {% endfor %}
+            {% endif %}
         </div>
 {% endblock %}

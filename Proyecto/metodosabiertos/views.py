@@ -3,6 +3,7 @@ from re import template
 from tkinter.tix import Tree
 from django.shortcuts import render, HttpResponse
 from django.views import View
+from django.contrib import messages
 
 
 from metodosabiertos.forms import Formulario_punto_fijo
@@ -41,7 +42,7 @@ class punto_fijo(View):
                     resultado = fixed_point(funcion,xi,tolerancia,False,funciong, iteraciones)
                 return render(request,self.template_response, {'tabla':resultado[1], 'resultado':resultado[0]} )              #Se envia la prespuesta
             except:
-                print("Error en el metodo")
+                messages.error(request, "Error en el metodo")
             print(resultado)
         return render(request, self.template_name, {'form':Formulario_punto_fijo})
 
@@ -73,7 +74,7 @@ class newton(View):
                     resultado = m_newton(funcion,xi,tolerancia,False,funciong,iteraciones)
                 return render(request,self.template_response, {'tabla': resultado[1], 'resultado':resultado[0]})
             except:
-                print("Error en el metodo")
+                messages.error(request, "Error en el metodo")
             print(resultado)
         return render(request, self.template_name, {'form':Formulario_newton})
 
@@ -105,7 +106,7 @@ class raices(View):
                     resultado = root_m(funcion,xi,fx1,fx2,tolerancia,False,iteraciones)
                 return render(request,self.template_response, {'tabla':resultado[1], 'resultado':resultado[0]})
             except:
-                print("Error en el metodo")
+                messages.error(request, "Error en el metodo")
             print(resultado)
         return render(request, self.template_name, {'form':Formulario_raices})
 
@@ -136,6 +137,6 @@ class secante(View):
                     resultado = secant(funcion,x1,x2,tolerancia,False,iteraciones)
                 return render(request,self.template_response,{'tabla': resultado[1], 'resultado':resultado[0]})
             except:
-                print("Error en el metodo")
+                messages.error(request, "Error en el metodo")
             print(resultado)
         return render(request, self.template_name, {'form':self.form_class})
