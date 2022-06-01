@@ -23,3 +23,6 @@ def elim_gaussiana(A,b,n):      #n es la dimension de la matriz
     for i in range(n):
         print('x' + str(i) + '=' + str(X[i]))   #Quitar
 
+x = [[2, -1, 3],[2,2,3],[-2,3,0]]
+y = [5,7,-3]
+elim_gaussiana(x, y, 3)

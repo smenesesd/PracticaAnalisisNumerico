@@ -4,6 +4,7 @@ from django.views import View
 from metodoscerrados.forms import Formulario_biseccion
 from metodoscerrados.forms import Formulario_regla_falsa
 from metodoscerrados.forms import Formulario_incremental
+from django.contrib import messages
 
 from metodoscerrados.biseccion import biseccion
 from metodoscerrados.regla_falsa import false_position_method
@@ -34,7 +35,7 @@ class metodo_biseccion(View):
                     resultado = biseccion(xi,funcion,xf,tolerancia,True)
                 return render(request,self.template_response, {'tabla':resultado[1], 'resultado':resultado[0]})
             except:
-                print("Error en el metodo")
+                messages.error(request, "Error en el metodo")
             print(resultado)
         return render(request, self.template_name, {'form':Formulario_biseccion})
 
@@ -65,7 +66,7 @@ class metodo_regla_faslsa(View):
                     resultado = false_position_method(xi,funcion,xf,tolerancia,False)
                 return render(request,self.template_response, {'tabla': resultado[1], 'resultado':resultado[0]})
             except:
-                print("Error en el metodo")
+                messages.error(request, "Error en el metodo")
         return render(request, self.template_name, {'form':Formulario_regla_falsa})
 
 class metodo_incremental(View):
@@ -89,7 +90,7 @@ class metodo_incremental(View):
                 resultado = incremental(funcion,xi,maxite,difx)
                 return render(request,self.template_response, {'tabla': resultado[1], 'resultado':resultado[0]})
             except:
-                print("Error en el metodo")
+                messages.error(request, "Error en el metodo")
             print(resultado)
         return render(request, self.template_name, {'form':Formulario_incremental})
 

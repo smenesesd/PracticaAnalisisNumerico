@@ -63,9 +63,32 @@
                     </ul>
                     {% endif %}
                 </div>
+                <div class = "opciones">
+                    <label for="{{form.tam.id_for_label}}">Dimension</label>
+                    <div class="form-warp">
+                        {{form.tam}}
+                    </div>
+                    {% if form.tam.errors %}
+                    <ul>
+                        {% for error in form.tam.errors %}
+                            <li class="errores">{{error}}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
                 <div class="boton">
                     <input type="submit" value="Enviar">
                 </div>
             </form>
+            {% if messages %}
+            {% for m in messages %}
+            <script>
+                Swal.fire({
+                    "text": "{{m}}",
+                    "icon":"warning"
+                })
+            </script>
+            {% endfor %}
+            {% endif %}
         </div>
         {% endblock %}
