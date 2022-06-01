@@ -30,8 +30,8 @@ def validador_matriz_b(b,n):
     return fila, True
 
 class metodo_vander(View):
-    template_name = 'crout/crout.html'
-    template_response = 'crout/crout_response.html'
+    template_name = 'vander/vander.html'
+    template_response = 'vander/vander_response.html'
     form_class = Formulario_vander
 
     def get(self, request, *args, **kwargs):
@@ -67,15 +67,15 @@ class metodo_vander(View):
                     lis.append(pal)
                     lista.append(lis)
                     j +=1
-                return render(request,'crout/crout_response.html',{'tabla':lista})
+                return render(request,'vander/vander_response.html',{'tabla':lista})
             except Exception as e:
                 messages.error(request, "Error en el metodo")
                 print(e)
         return render(request, self.template_name, {'form':Formulario_vander})
 
 class metodo_internewton(View):
-    template_name = 'crout/crout.html'
-    template_response = 'crout/crout_response.html'
+    template_name = 'diferencias/diferencias.html'
+    template_response = 'diferencias/diferencias_response.html'
     form_class = Formulario_dif
 
     def get(self, request, *args, **kwargs):
@@ -111,15 +111,15 @@ class metodo_internewton(View):
                     lis.append(pal)
                     lista.append(lis)
                     j +=1
-                return render(request,'crout/crout_response.html',{'tabla':lista})
+                return render(request,'diferencias/diferencias_response.html',{'tabla':lista})
             except Exception as e:
                 messages.error(request, "Error en el metodo")
                 print(e)
         return render(request, self.template_name, {'form':Formulario_dif})
 
 class metodo_spline(View):
-    template_name = 'crout/crout.html'
-    template_response = 'crout/crout_response.html'
+    template_name = 'splines/splines.html'
+    template_response = 'splines/splines_response.html'
     form_class = Formulario_spline
 
     def get(self, request, *args, **kwargs):
@@ -143,7 +143,7 @@ class metodo_spline(View):
             resultado =""
             try:
                 resultado = splines_l(resultadoA[0],resultadoB[0])
-                return render(request,'crout/crout_response.html',{'tabla':resultado})
+                return render(request,'splines/splines_response.html',{'tabla':resultado})
             except Exception as e:
                 messages.error(request, "Error en el metodo")
                 print(e)
