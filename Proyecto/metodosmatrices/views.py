@@ -4,6 +4,26 @@ from metodoscerrados.forms import Formulario_biseccion
 
 
 # Create your views here.
+#[[2,34,4] [-2, 34,4]]
+def validador_matriz(a):
+    division = a.split(" ")
+    matriz = []
+    for i in range(len(division)):
+        i = i.replace("[",'')
+        i = i.replace("]",'')
+        final = i.split(",")
+        fila =[]
+        try:
+            for j in range(len(final)):
+                fila.append(int(j))
+            matriz.append(fila)
+        except:
+            return "Ocurrio un error"
+    for j in range(len(matriz)):
+        if len(matriz) != len(j):
+            return "dimensiones erroneas"
+    print(matriz)
+
 class metodo_biseccion(View):
     template_name = 'biseccion/biseccion.html'
     template_response = 'biseccion/biseccion_response.html'
