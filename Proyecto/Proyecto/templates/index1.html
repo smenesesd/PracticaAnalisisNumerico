@@ -48,12 +48,44 @@
 					<span>Regla falsa</span></a>
 				</li>
 				<li>
-					<a href="{% url 'crout' %}" class="{% if request.path == '/metodoscerrados/crout/' %}active{% endif %}"><span class="las la-money-check"></span>
+					<a href="{% url 'crout' %}" class="{% if request.path == '/metodosmatrices/crout/' %}active{% endif %}"><span class="las la-money-check"></span>
 					<span>Crout</span></a>
 				</li>
 				<li>
-					<a href="{% url 'dolittle' %}" class="{% if request.path == '/metodoscerrados/doolittle/' %}active{% endif %}"><span class="las la-money-check"></span>
-					<span>Crout</span></a>
+					<a href="{% url 'dolittle' %}" class="{% if request.path == '/metodosmatrices/doolittle/' %}active{% endif %}"><span class="las la-money-check"></span>
+					<span>dolittle</span></a>
+				</li>
+				<li>
+					<a href="{% url 'elim_gauss_piv_parcial' %}" class="{% if request.path == '/metodosmatrices/elim_gauss_piv_parcial/' %}active{% endif %}"><span class="las la-money-check"></span>
+					<span>Eliminacion Gaussiana pivoteo parcial</span></a>
+				</li>
+				<li>
+					<a href="{% url 'elim_gauss_piv_total' %}" class="{% if request.path == '/metodosmatrices/elim_gauss_piv_total/' %}active{% endif %}"><span class="las la-money-check"></span>
+					<span>Eliminacion Gaussiana pivoteo total</span></a>
+				</li>
+				<li>
+					<a href="{% url 'elim_gaussiana' %}" class="{% if request.path == '/metodosmatrices/elim_gaussiana/' %}active{% endif %}"><span class="las la-money-check"></span>
+					<span>Eliminacion Gaussiana</span></a>
+				</li>
+				<li>
+					<a href="{% url 'factorizacion_LU' %}" class="{% if request.path == '/metodosmatrices/factorizacion_LU/' %}active{% endif %}"><span class="las la-money-check"></span>
+					<span>Factorizacion LU</span></a>
+				</li>
+				<li>
+					<a href="{% url 'seidel' %}" class="{% if request.path == '/metodosmatrices/seidel/' %}active{% endif %}"><span class="las la-money-check"></span>
+					<span>Seidel</span></a>
+				</li>
+				<li>
+					<a href="{% url 'vander' %}" class="{% if request.path == '/interpolacion/vander/' %}active{% endif %}"><span class="las la-money-check"></span>
+					<span>Vander</span></a>
+				</li>
+				<li>
+					<a href="{% url 'internewton' %}" class="{% if request.path == '/interpolacion/internewton/' %}active{% endif %}"><span class="las la-money-check"></span>
+					<span>Interpolacion</span></a>
+				</li>
+				<li>
+					<a href="{% url 'spline' %}" class="{% if request.path == '/interpolacion/spline/' %}active{% endif %}"><span class="las la-money-check"></span>
+					<span>Splines</span></a>
 				</li>
 			</ul>
 		</div>
