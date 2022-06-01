@@ -106,8 +106,8 @@ class metodo_crout(View):
         return render(request, self.template_name, {'form':Formulario_crout})
 
 class metodo_doolittle(View):
-    template_name = 'biseccion/biseccion.html'
-    template_response = 'biseccion/biseccion_response.html'
+    template_name = 'doolittle/doolittle.html'
+    template_response = 'doolittle/doolittle_response.html'
     form_class = Formulario_doolittle
 
     def get(self, request, *args, **kwargs):
