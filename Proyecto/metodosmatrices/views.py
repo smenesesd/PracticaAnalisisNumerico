@@ -5,6 +5,7 @@ from metodosmatrices.forms import Formulario_doolittle
 from metodosmatrices.forms import Formulario_crout
 from metodosmatrices.Metodos.crout import crout
 from metodosmatrices.Metodos.doolittle import doolittle
+import numpy as np
 
 
 # Create your views here.
@@ -86,9 +87,22 @@ class metodo_crout(View):
             resultado =""
             try:
                 resultado = crout(resultadoA[0],resultadoB[0])
-                return render(request,self.template_response, {'tabla':resultado[1]})
-            except:
+                resultado1 = resultado.tolist()
+                print(resultado1)
+                lista =[]
+                j = 1
+                for i in resultado1:
+                    lis = []
+                    pal = str(i)
+                    pal1= "X"+str(j)
+                    lis.append(pal1)
+                    lis.append(pal)
+                    lista.append(lis)
+                    j +=1
+                return render(request,'crout/crout_response.html',{'tabla':lista})
+            except Exception as e:
                 messages.error(request, "Error en el metodo")
+                print(e)
         return render(request, self.template_name, {'form':Formulario_crout})
 
 class metodo_doolittle(View):
@@ -117,7 +131,19 @@ class metodo_doolittle(View):
             resultado =""
             try:
                 resultado = doolittle(resultadoA[0],resultadoB[0])
-                return render(request,self.template_response, {'tabla':resultado[1]})
+                resultado1 = resultado.tolist()
+                print(resultado1)
+                lista =[]
+                j = 1
+                for i in resultado1:
+                    lis = []
+                    pal = str(i)
+                    pal1= "X"+str(j)
+                    lis.append(pal1)
+                    lis.append(pal)
+                    lista.append(lis)
+                    j +=1
+                return render(request,'crout/crout_response.html',{'tabla':lista})
             except:
                 messages.error(request, "Error en el metodo")
         return render(request, self.template_name, {'form':Formulario_doolittle})
