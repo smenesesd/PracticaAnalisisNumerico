@@ -13,6 +13,7 @@ from metodosmatrices.Metodos.elim_gauss_piv_parcial import elim_gauss_piv_parcia
 from metodosmatrices.Metodos.elim_gauss_piv_total import elim_gauss_piv_total
 from metodosmatrices.Metodos.elim_gaussiana import elim_gaussiana
 from metodosmatrices.Metodos.factorizacion_LU import fac_LU
+from metodosmatrices.Metodos.seidel import met_seidel
 
 import numpy as np
 
@@ -183,11 +184,11 @@ class metodo_elim_gauss_piv_parcial(View):
             resultado =""
             try:
                 resultado = elim_gauss_piv_parcial(resultadoA[0],resultadoB[0],dimension)
-                resultado1 = resultado.tolist()
-                print(resultado1)
+                #resultado1 = resultado.tolist()
+                print(resultado)
                 lista =[]
                 j = 1
-                for i in resultado1:
+                for i in resultado:
                     lis = []
                     pal = str(i)
                     pal1= "X"+str(j)
@@ -227,11 +228,11 @@ class metodo_elim_gauss_piv_total(View):
             resultado =""
             try:
                 resultado = elim_gauss_piv_total(resultadoA[0],resultadoB[0], dimension)
-                resultado1 = resultado.tolist()
-                print(resultado1)
+                #resultado1 = resultado.tolist()
+                #print(resultado1)
                 lista =[]
                 j = 1
-                for i in resultado1:
+                for i in resultado:
                     lis = []
                     pal = str(i)
                     pal1= "X"+str(j)
@@ -271,11 +272,11 @@ class metodo_elim_gaussiana(View):
             resultado =""
             try:
                 resultado = elim_gaussiana(resultadoA[0],resultadoB[0], dimension)
-                resultado1 = resultado.tolist()
-                print(resultado1)
+                #resultado1 = resultado.tolist()
+                #print(resultado1)
                 lista =[]
                 j = 1
-                for i in resultado1:
+                for i in resultado:
                     lis = []
                     pal = str(i)
                     pal1= "X"+str(j)
@@ -335,8 +336,8 @@ class metodo_factorizacion_LU(View):
 
 
 class metodo_seidel(View):
-    template_name = 'factorizacion_LU/factorizacion_LU.html'
-    template_response = 'factorizacion_LU/factorizacion_LU_response.html'
+    template_name = 'seidel/seidel.html'
+    template_response = 'seidel/seidel_response.html'
     form_class = Formulario_seidel
 
     def get(self, request, *args, **kwargs):
@@ -348,7 +349,7 @@ class metodo_seidel(View):
         if form.is_valid():
             dimension= int(form.cleaned_data['tam'])
             maxite= int(form.cleaned_data['maxite'])
-            tolerancia= int(form.cleaned_data['tolerancia'])
+            tolerancia= float(form.cleaned_data['tolerancia'])
             matrizB = form.cleaned_data['matrizB']
             matrizA = form.cleaned_data['matrizA']
             resultadoA = validador_matriz(matrizA, dimension)
@@ -361,7 +362,7 @@ class metodo_seidel(View):
                 return render(request, self.template_name, {'form':Formulario_seidel})
             resultado =""
             try:
-                resultado = fac_LU(resultadoA[0],resultadoB[0], maxite, tolerancia)
+                resultado = met_seidel(resultadoA[0],resultadoB[0], maxite, tolerancia)
                 resultado1 = resultado.tolist()
                 print(resultado1)
                 lista =[]
@@ -374,7 +375,7 @@ class metodo_seidel(View):
                     lis.append(pal)
                     lista.append(lis)
                     j +=1
-                return render(request,'factorizacion_LU/factorizacion_LU_response.html',{'tabla':lista})
+                return render(request,self.template_response,{'tabla':lista})
             except Exception as e:
                 messages.error(request, "Error en el metodo")
                 print(e)
