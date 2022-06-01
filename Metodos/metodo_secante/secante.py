@@ -41,6 +41,6 @@ def secant(fx,x1,x2,tol,optiontol,nitera):
 x = sympy.Symbol('x') 
 gx = (-e**(-x))-1                                              
 fdx = (e**(-x))-x
-result=secant(fdx,1,0,0,True,10)                                
+result=secant(fdx,1,0,0.0000001,True,10)                                
 print(result[0])                                                 
 print(tabulate(result[1],headers=["ite", "x", "f(x)","error"]))

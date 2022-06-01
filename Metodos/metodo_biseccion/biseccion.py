@@ -6,32 +6,32 @@ def biseccion(xi,fx,xf,tol,optiontol):
     xi = float(xi)
     xf = float(xf)
     tol = float(tol)
-    if fx.subs(x,xi)*fx.subs(x,xf)==0:
+    if fx.subs(x,xi)*fx.subs(x,xf)==0:          #Evaluamos si en el intervalo hay hay una raiz
         return "Xi or Xf are roots",table
-    elif fx.subs(x,xi)*fx.subs(x,xf)>0:
+    elif fx.subs(x,xi)*fx.subs(x,xf)>0:         #En caso de que sea mayor a cero no hay una raiz
         return "Interval not valid"
     else:
-        xm = (xi+xf)/2
+        xm = (xi+xf)/2                          #Calculamos el punto tmedio
         error=tol+1.0
-        if optiontol:
+        if optiontol:                           #Dependiendo de la opcion calculamos la toleracion
             error=abs(xm-xi)
         else:
             error=abs((xm-xi)/xm)
-        table.append([xi,round(fx.subs(x,xi),4),xm,round(fx.subs(x,xm),4),xf,round(fx.subs(x,xf),4),error])
-        while(error>=tol and fx.subs(x,xm)!=0):
-            if fx.subs(x,xi)*fx.subs(x,xm)<0:
+        table.append([xi,round(fx.subs(x,xi),4),xm,round(fx.subs(x,xm),4),xf,round(fx.subs(x,xf),4),error])     #Evaluamos en los primeros puntos y adjuntamos a respuesta a la tabla
+        while(error>=tol and fx.subs(x,xm)!=0):                     #Mientras que seamos mayores que la toleracina y no haya una raiz se ejecuta el ciclo
+            if fx.subs(x,xi)*fx.subs(x,xm)<0:               #En caso de que la raiz este en la parte de abajo
                 xf = xm
-            else:
-                xi = xm
+            else:                                           #En caso de que la raiz se encuentre en la parte de arriba
+                xi = xm 
             xm = (xi+xf)/2
-            if optiontol:
+            if optiontol:                                   #Se calcula el error dependiendo del escojido
                 error=abs(xm-xi)
             else:
                 error=abs((xm-xi)/xm)
-            table.append([xi,round(fx.subs(x,xi),4),xm,round(fx.subs(x,xm),4),xf,round(fx.subs(x,xf),4),error])
-        if fx.subs(x,xm)==0:
+            table.append([xi,round(fx.subs(x,xi),4),xm,round(fx.subs(x,xm),4),xf,round(fx.subs(x,xf),4),error])     #Añadimos los resultado obtenidos a la tabla de respuesta
+        if fx.subs(x,xm)==0:                                #En caso de que hallemos la raiz
             return "Xm is a root",table
-        else:
+        else:                                               #En caso de llegar por tolerancia
             return "Xm is a root with tol",table
 
 #Main

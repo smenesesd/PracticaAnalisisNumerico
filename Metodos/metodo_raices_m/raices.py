@@ -36,7 +36,7 @@ fdx1 = x*(2.71**(x))
 fdx2 = x*(2.71**(x))+(2.71**(x))                                            
 fdx = x*(2.71**(x))-(2.71**(x))+1
 
-print(fd)
+
 result=root_m(fdx,0.5,fdx1,fdx2,0.0001,True,10)                                
 print(result[0])                                                 
 print(tabulate(result[1],headers=["ite", "x", "f(x)","f'(x)","f''(x)","error"]))
