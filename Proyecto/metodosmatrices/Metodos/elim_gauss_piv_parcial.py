@@ -30,13 +30,12 @@ def elim_gauss_piv_parcial(A,b,n):
         
         x[k-1] = (A[k-1][n]-sum)/A[k-1][k-1]
     
-    for i in range(n):
-        print('x' + str(i) + '=' + str(x[i]))
+    return x
 
-A = [[4, 3, -2, -7],
-     [3, 12, 8, -3],
-     [2, 3, -9, 3],
-     [1, -2, -5, -6],]
+#A = [[4, 3, -2, -7],
+#     [3, 12, 8, -3],
+#     [2, 3, -9, 3],
+#     [1, -2, -5, -6],]
   
-b = [20, 18, 31, 12]
-elim_gauss_piv_parcial(A, b, 4)
+#b = [20, 18, 31, 12]
+#elim_gauss_piv_parcial(A, b, 4)

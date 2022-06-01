@@ -26,10 +26,9 @@ def doolittle(A,b):
                 l[j][i] = (A[j][i]-temp)/u[i][i]
     y = np.linalg.solve(l, b)
     x = np.linalg.solve(u,y)
-    for i in range(n):
-        print("x"+str(i+1)+"=",x[i])
+    return x
 
 
-a = [[2,4,2,6],[4,9,6,15],[2,6,9,18],[6,15,18,40]]
-b = [9,23,22,47]
-doolittle(a,b)
+#a = [[2,4,2,6],[4,9,6,15],[2,6,9,18],[6,15,18,40]]
+#b = [9,23,22,47]
+#doolittle(a,b)
