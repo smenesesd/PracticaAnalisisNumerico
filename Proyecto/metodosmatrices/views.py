@@ -1,8 +1,10 @@
 from django.shortcuts import render, HttpResponse
 from django.views import View
 from django.contrib import messages
+from Proyecto.metodosmatrices.forms import Formulario_doolittle
 from metodosmatrices.forms import Formulario_crout
 from metodosmatrices.Metodos.crout import crout
+from metodosmatrices.Metodos.doolittle import doolittle
 
 
 # Create your views here.
@@ -77,14 +79,45 @@ class metodo_crout(View):
             resultadoB = validador_matriz_b(matrizB, dimension)
             if not resultadoA[1]:
                 messages.error(request, resultadoA[0])
-                return "Mensaje"
+                return render(request, self.template_name, {'form':Formulario_crout})
             if not resultadoB[1]:
-                return "Mensaje"
+                messages.error(request, resultadoB[0])
+                return render(request, self.template_name, {'form':Formulario_crout})
             resultado =""
             try:
                 resultado = crout(resultadoA[0],resultadoB[0])
-                return render(request,self.template_response, {'tabla':resultado[1], 'resultado':resultado[0]})
+                return render(request,self.template_response, {'tabla':resultado[1]})
             except:
-                print("Error en el metodo")
-            print(resultado)
-        return render(request, self.template_name, {'form':Formulario_biseccion})
+                messages.error(request, "Error en el metodo")
+        return render(request, self.template_name, {'form':Formulario_crout})
+
+class metodo_doolittle(View):
+    template_name = 'biseccion/biseccion.html'
+    template_response = 'biseccion/biseccion_response.html'
+    form_class = Formulario_doolittle
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class
+        return render(request, self.template_name,{'form':form})
+
+    def post(self, request, *args, **kwargs):
+        form = Formulario_doolittle(request.POST)
+        if form.is_valid():
+            dimension= int(form.cleaned_data['tam'])
+            matrizB = form.cleaned_data['matrizB']
+            matrizA = form.cleaned_data['matrizA']
+            resultadoA = validador_matriz(matrizA, dimension)
+            resultadoB = validador_matriz_b(matrizB, dimension)
+            if not resultadoA[1]:
+                messages.error(request, resultadoA[0])
+                return render(request, self.template_name, {'form':Formulario_doolittle})
+            if not resultadoB[1]:
+                messages.error(request, resultadoB[0])
+                return render(request, self.template_name, {'form':Formulario_doolittle})
+            resultado =""
+            try:
+                resultado = doolittle(resultadoA[0],resultadoB[0])
+                return render(request,self.template_response, {'tabla':resultado[1]})
+            except:
+                messages.error(request, "Error en el metodo")
+        return render(request, self.template_name, {'form':Formulario_doolittle})
