@@ -12,17 +12,17 @@ def fixed_point(fx,xi,tol,optiontol,gx,nitera):
     else:
         ite = 0
         error = tol+1.0
-        table.append([ite,xi,round(gx.subs(x,xi),4),error])
-        while(error>=tol and ite < nitera):
-            xm = gx.subs(x,xi)
+        table.append([ite,xi,round(gx.subs(x,xi),4),error])         #Añadimos la primera iteracion a la tabla
+        while(error>=tol and ite < nitera):                         #En caso de no llegar a la toleracina y faltar iteraciones entramos a bucle
+            xm = gx.subs(x,xi)                                      #Calculamos xm con gx
             if optiontol:
                 error=abs(xm-xi)
             else:
                 error=abs((xm-xi)/xm)
             ite += 1
-            table.append([ite,xm,round(gx.subs(x,xm),4),error])
+            table.append([ite,xm,round(gx.subs(x,xm),4),error])      #Añadimos los datos de la iteracion
             xi = xm
-        if error<tol:
+        if error<tol:                                                #Retornamos resultado
             return "Xi is root with tol",table
         else:
             return "we don't arrived", table
