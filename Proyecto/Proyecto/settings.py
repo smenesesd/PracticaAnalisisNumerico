@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'metodosabiertos',
     'metodoscerrados',
     'metodosmatrices',
+    'interpolacion',
 ]
 
 MIDDLEWARE = [
