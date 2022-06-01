@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse
 from django.views import View
 from django.contrib import messages
-from Proyecto.metodosmatrices.forms import Formulario_doolittle
+from metodosmatrices.forms import Formulario_doolittle
 from metodosmatrices.forms import Formulario_crout
 from metodosmatrices.Metodos.crout import crout
 from metodosmatrices.Metodos.doolittle import doolittle
@@ -61,8 +61,8 @@ def validador_matriz(a, n):
 
 
 class metodo_crout(View):
-    template_name = 'biseccion/biseccion.html'
-    template_response = 'biseccion/biseccion_response.html'
+    template_name = 'crout/crout.html'
+    template_response = 'crout/crout_response.html'
     form_class = Formulario_crout
 
     def get(self, request, *args, **kwargs):
