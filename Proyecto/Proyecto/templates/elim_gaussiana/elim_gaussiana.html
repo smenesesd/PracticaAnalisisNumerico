@@ -12,7 +12,7 @@
             <form action="" method="POST" class= "basic-grey">
                 {% csrf_token %}
                 <div class = "opciones">
-                    <label for="{{form.funcion.id_for_label}}">MatrizA</label>
+                    <label for="{{form.matrizA.id_for_label}}">MatrizA</label>
                     <div class="form-warp">
                         {{form.funcion}}
                     </div>
@@ -25,7 +25,7 @@
                     {% endif %}
                 </div>
                 <div class = "opciones">
-                    <label for="{{form.xi.id_for_label}}">MatrizB</label>
+                    <label for="{{form.matrizB.id_for_label}}">MatrizB</label>
                     <div class="form-warp">
                         {{form.xi}}
                     </div>
@@ -38,7 +38,7 @@
                     {% endif %}
                 </div>
                 <div class = "opciones">
-                    <label for="{{form.maxite.id_for_label}}">n</label>
+                    <label for="{{form.tam.id_for_label}}">n</label>
                     <div class="form-warp">
                         {{form.maxite}}
                     </div>
