@@ -1,6 +1,5 @@
 import sympy 
 from tabulate import tabulate
-from math import e
 from sympy import var
 
 def false_position_method(xi,fx,xf,tol,optiontol):
