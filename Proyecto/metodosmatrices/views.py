@@ -6,7 +6,7 @@ from metodosmatrices.forms import Formulario_crout
 from metodosmatrices.forms import Formulario_gauss_piv_parcial
 from metodosmatrices.forms import Formulario_gauss_piv_total
 from metodosmatrices.forms import Formulario_gaussiana
-from metodosmatrices.forms import Formulario_factorizacion_LU
+from metodosmatrices.forms import Formulario_factorizacion_LU, Formulario_seidel
 from metodosmatrices.Metodos.crout import crout
 from metodosmatrices.Metodos.doolittle import doolittle
 from metodosmatrices.Metodos.elim_gauss_piv_parcial import elim_gauss_piv_parcial
@@ -182,7 +182,7 @@ class metodo_elim_gauss_piv_parcial(View):
                 return render(request, self.template_name, {'form':Formulario_gauss_piv_parcial})
             resultado =""
             try:
-                resultado = elim_gauss_piv_parcial(resultadoA[0],resultadoB[0])
+                resultado = elim_gauss_piv_parcial(resultadoA[0],resultadoB[0],dimension)
                 resultado1 = resultado.tolist()
                 print(resultado1)
                 lista =[]
@@ -226,7 +226,7 @@ class metodo_elim_gauss_piv_total(View):
                 return render(request, self.template_name, {'form':Formulario_gauss_piv_total})
             resultado =""
             try:
-                resultado = elim_gauss_piv_total(resultadoA[0],resultadoB[0])
+                resultado = elim_gauss_piv_total(resultadoA[0],resultadoB[0], dimension)
                 resultado1 = resultado.tolist()
                 print(resultado1)
                 lista =[]
@@ -270,7 +270,7 @@ class metodo_elim_gaussiana(View):
                 return render(request, self.template_name, {'form':Formulario_gaussiana})
             resultado =""
             try:
-                resultado = elim_gaussiana(resultadoA[0],resultadoB[0])
+                resultado = elim_gaussiana(resultadoA[0],resultadoB[0], dimension)
                 resultado1 = resultado.tolist()
                 print(resultado1)
                 lista =[]
@@ -314,7 +314,7 @@ class metodo_factorizacion_LU(View):
                 return render(request, self.template_name, {'form':Formulario_factorizacion_LU})
             resultado =""
             try:
-                resultado = fac_LU(resultadoA[0],resultadoB[0])
+                resultado = fac_LU(resultadoA[0],resultadoB[0], dimension)
                 resultado1 = resultado.tolist()
                 print(resultado1)
                 lista =[]
@@ -333,3 +333,49 @@ class metodo_factorizacion_LU(View):
                 print(e)
         return render(request, self.template_name, {'form':Formulario_factorizacion_LU})
 
+
+class metodo_seidel(View):
+    template_name = 'factorizacion_LU/factorizacion_LU.html'
+    template_response = 'factorizacion_LU/factorizacion_LU_response.html'
+    form_class = Formulario_seidel
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class
+        return render(request, self.template_name,{'form':form})
+
+    def post(self, request, *args, **kwargs):
+        form = Formulario_seidel(request.POST)
+        if form.is_valid():
+            dimension= int(form.cleaned_data['tam'])
+            maxite= int(form.cleaned_data['maxite'])
+            tolerancia= int(form.cleaned_data['tolerancia'])
+            matrizB = form.cleaned_data['matrizB']
+            matrizA = form.cleaned_data['matrizA']
+            resultadoA = validador_matriz(matrizA, dimension)
+            resultadoB = validador_matriz_b(matrizB, dimension)
+            if not resultadoA[1]:
+                messages.error(request, resultadoA[0])
+                return render(request, self.template_name, {'form':Formulario_seidel})
+            if not resultadoB[1]:
+                messages.error(request, resultadoB[0])
+                return render(request, self.template_name, {'form':Formulario_seidel})
+            resultado =""
+            try:
+                resultado = fac_LU(resultadoA[0],resultadoB[0], maxite, tolerancia)
+                resultado1 = resultado.tolist()
+                print(resultado1)
+                lista =[]
+                j = 1
+                for i in resultado1:
+                    lis = []
+                    pal = str(i)
+                    pal1= "X"+str(j)
+                    lis.append(pal1)
+                    lis.append(pal)
+                    lista.append(lis)
+                    j +=1
+                return render(request,'factorizacion_LU/factorizacion_LU_response.html',{'tabla':lista})
+            except Exception as e:
+                messages.error(request, "Error en el metodo")
+                print(e)
+        return render(request, self.template_name, {'form':Formulario_seidel})

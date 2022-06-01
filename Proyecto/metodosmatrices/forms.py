@@ -35,3 +35,4 @@ class Formulario_seidel(forms.Form):
     matrizB = forms.CharField(label='MatrizB', required=True, widget=forms.TextInput(attrs={'placeholder':'Ingrese los valores de la matriz B...'}))
     maxite = forms.IntegerField(label='maxite', required=True, widget=forms.NumberInput(attrs={'placeholder':'Ingrese la maxima iteracion...'}))
     tolerancia = forms.FloatField(label='tol', required=True, widget=forms.NumberInput(attrs={'placeholder':'Ingrese la tolerancia...','step':'0.0001'}))
+    tam = forms.IntegerField(label='n', required=True, widget=forms.NumberInput(attrs={'placeholder':'Ingrese el tamaño de la matriz...'}))
