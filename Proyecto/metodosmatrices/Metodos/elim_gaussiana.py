@@ -20,6 +20,5 @@ def elim_gaussiana(A,b,n):      #n es la dimension de la matriz
 
         X[k-1] = (A[k-1][n]-sum)/A[k-1][k-1]    #Operacion para calcular el valor de X
     
-    for i in range(n):
-        print('x' + str(i) + '=' + str(X[i]))   #Quitar
+    return X
 
