@@ -7,7 +7,7 @@
     <body>
         <div>
             <div class="titulo">
-                <h2>Doolittle</h2>
+                <h2>Seidel</h2>
             </div>
             <form action="" method="POST" class= "basic-grey">
                 {% csrf_token %}
@@ -38,7 +38,20 @@
                     {% endif %}
                 </div>
                 <div class = "opciones">
-                    <label for="{{form.maxite.id_for_label}}">n</label>
+                    <label for="{{form.maxite.id_for_label}}">maxite</label>
+                    <div class="form-warp">
+                        {{form.maxite}}
+                    </div>
+                    {% if form.maxite.errors %}
+                    <ul>
+                        {% for error in form.maxite.errors %}
+                            <li class="errores">{{error}}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                <div class = "opciones">
+                    <label for="{{form.maxite.id_for_label}}">tol</label>
                     <div class="form-warp">
                         {{form.maxite}}
                     </div>
