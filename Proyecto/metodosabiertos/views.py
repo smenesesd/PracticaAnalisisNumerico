@@ -1,6 +1,3 @@
-from asyncio.format_helpers import _format_callback_source
-from re import template
-from tkinter.tix import Tree
 from django.shortcuts import render, HttpResponse
 from django.views import View
 from django.contrib import messages

@@ -134,7 +134,8 @@ class metodo_spline(View):
             resultado =""
             try:
                 resultado = splines_l(resultadoA[0],resultadoB[0])
-                print(resultado)
+                for i in resultado:
+                    print(type(i))
                 return render(request,'splines/splines_response.html',{'tabla':resultado})
             except Exception as e:
                 messages.error(request, "Error en el metodo")

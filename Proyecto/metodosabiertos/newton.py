@@ -1,8 +1,6 @@
-from cmath import sqrt
 import sympy
 from sympy import sympify, var
 from tabulate import tabulate
-from math import e
 def m_newton(fx,xi,tol,optiontol,gx,nitera):
     x = var('x')
     fx = sympy.sympify(fx)
