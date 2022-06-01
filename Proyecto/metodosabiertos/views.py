@@ -3,6 +3,7 @@ from re import template
 from tkinter.tix import Tree
 from django.shortcuts import render, HttpResponse
 from django.views import View
+from toml import TomlEncoder
 
 from metodosabiertos.forms import Formulario_punto_fijo
 from metodosabiertos.forms import Formulario_newton
@@ -11,7 +12,7 @@ from metodosabiertos.forms import Formulario_secante
 
 from metodosabiertos.puntofijo import fixed_point
 from metodosabiertos.newton import m_newton
-from metodosabiertos import raices
+from metodosabiertos.raices import root_m
 from metodosabiertos.secante import secant
 # Create your views here.
 class punto_fijo(View):
@@ -96,16 +97,18 @@ class raices(View):
             opcion = form.cleaned_data['opcion']
             iteraciones = int(form.cleaned_data['iteraciones'])
             resultado = ""
+            print(funcion, fx1, fx2, xi, tolerancia, opcion,iteraciones)
             try:
                 if opcion == "1":
-                    resultado = raices(funcion,fx1,fx2,xi,tolerancia,True,iteraciones)
+                    resultado = root_m(funcion,xi,fx1,fx2,tolerancia,True,iteraciones)
                 else:
-                    resultado = raices(funcion,fx1,fx2,xi,tolerancia,False,iteraciones)
+                    resultado = root_m(funcion,xi,fx1,fx2,tolerancia,False,iteraciones)
                 return render(request,self.template_response, {'tabla':resultado[1], 'resultado':resultado[0]})
             except:
                 print("Error en el metodo")
             print(resultado)
         return render(request, self.template_name, {'form':Formulario_raices})
+
 class secante(View):
     template_name = 'secante/secante.html'
     template_response = 'secante/secante_response.html'
@@ -125,6 +128,7 @@ class secante(View):
             opcion = form.cleaned_data['opcion']
             iteraciones = int(form.cleaned_data['iteraciones'])
             resultado = ""
+            print(funcion, x1 ,x2, tolerancia, opcion, iteraciones)
             try:
                 if opcion == "1":
                     resultado = secant(funcion,x1,x2,tolerancia,True,iteraciones)
@@ -134,4 +138,4 @@ class secante(View):
             except:
                 print("Error en el metodo")
             print(resultado)
-        return render(request, self.template_name, {'form':Formulario_secante})
+        return render(request, self.template_name, {'form':self.form_class})

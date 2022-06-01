@@ -29,9 +29,9 @@ class metodo_biseccion(View):
             resultado =""
             try:
                 if opcion == "1":
-                    resultado = biseccion(funcion,xi,xf,tolerancia,True)
+                    resultado = biseccion(xi,funcion,xf,tolerancia,True)
                 else:
-                    resultado = biseccion(funcion,xi,xf,tolerancia,True)
+                    resultado = biseccion(xi,funcion,xf,tolerancia,True)
                 return render(request,self.template_response, {'tabla':resultado[1], 'resultado':resultado[0]})
             except:
                 print("Error en el metodo")
@@ -42,7 +42,7 @@ class metodo_biseccion(View):
 
 class metodo_regla_faslsa(View):
     template_name = 'regla_falsa/reglafalsa.html'
-    template_response = 'regla_falsa/reglafalsa_response'
+    template_response = 'regla_falsa/reglafalsa_response.html'
     form_class = Formulario_regla_falsa()
     
     def get(self, request, *args, **kwargs):
@@ -60,13 +60,12 @@ class metodo_regla_faslsa(View):
             resultado = ""
             try: 
                 if opcion == "1":
-                    resultado = false_position_method(funcion,xi,xf,tolerancia,True)
+                    resultado = false_position_method(xi,funcion,xf,tolerancia,True)
                 else:
-                    resultado = false_position_method(funcion,xi,xf,tolerancia,False)
+                    resultado = false_position_method(xi,funcion,xf,tolerancia,False)
                 return render(request,self.template_response, {'tabla': resultado[1], 'resultado':resultado[0]})
             except:
                 print("Error en el metodo")
-            print(resultado)
         return render(request, self.template_name, {'form':Formulario_regla_falsa})
 
 class metodo_incremental(View):

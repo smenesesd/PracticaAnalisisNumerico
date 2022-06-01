@@ -6,7 +6,7 @@ from sympy import var
 def false_position_method(xi,fx,xf,tol,optiontol):
     x = var('x')
     fx = sympy.sympify(fx)
-    table = ["xi", "f(xi)", "xm","f(xm)","xf","f(xf)","error"]
+    table = [["xi", "f(xi)", "xm","f(xm)","xf","f(xf)","error"]]
     xi = float(xi)
     xf = float(xf)
     tol = float(tol)

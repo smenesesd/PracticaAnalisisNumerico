@@ -40,7 +40,7 @@ def intercept(fx,xi,xf):
 #Main
 x = sympy.Symbol('x')                                               
 fdx = x**3-7.51*x**2+18.4239*x-14.8331
-result=false_position_method(3,fdx,3.5,5*10**-5,True)                                
+result=false_position_method(3,fdx,3.5,0.0001,True)                                
 print(result[0])                                                 
 print(tabulate(result[1],headers=["xi", "f(xi)", "xm","f(xm)","xf","f(xf)","error"]))
 

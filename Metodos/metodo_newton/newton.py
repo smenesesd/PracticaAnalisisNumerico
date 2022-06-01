@@ -3,6 +3,7 @@ from tabulate import tabulate
 from math import e
 def newton(fx,xi,tol,optiontol,gx,nitera):
     tabla = []
+    print(fx, gx)
     xi = float(xi)
     tol = float(tol)
     if fx.subs(x,xi)==0:
@@ -28,9 +29,9 @@ def newton(fx,xi,tol,optiontol,gx,nitera):
             return "we don't arrived", tabla
 #main
 x = sympy.Symbol('x') 
-gx = (-e**(-x))-1  
+gx = (-2.71**(-x))-1  
 print(gx)                                           
-fdx = (e**(-x))-x
-result=newton(fdx,1,5*10**-8,True,gx,10)                                
+fdx = (2.71**(-x))-x
+result=newton(fdx,1,0.0001,True,gx,10)                                
 print(result[0])                                                 
 print(tabulate(result[1],headers=["ite", "x", "f'(x)","error"]))

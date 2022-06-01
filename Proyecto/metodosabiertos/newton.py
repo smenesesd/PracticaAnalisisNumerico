@@ -7,6 +7,7 @@ def m_newton(fx,xi,tol,optiontol,gx,nitera):
     x = var('x')
     fx = sympy.sympify(fx)
     gx = sympy.sympify(gx)
+    print(fx, gx)
     tabla = [["ite", "x", "f'(x)","error"]]
     xi = float(xi)
     tol = float(tol)

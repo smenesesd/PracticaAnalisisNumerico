@@ -7,7 +7,7 @@ def incremental(fx, xi, maxite, difx):
     fx = sympy.sympify(fx)
     xi = float(xi)
     difx = float(difx)
-    table = ["Ite", "x", "F(x)"]                                                                    
+    table = [["Ite", "x", "F(x)"]]                                                                    
     if fx.subs(x, xi)==0:                                           
         return "xi is a root ",table
     else:                                                           

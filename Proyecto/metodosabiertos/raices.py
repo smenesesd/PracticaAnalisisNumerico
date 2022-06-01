@@ -1,7 +1,6 @@
 import sympy
 from tabulate import tabulate
 from sympy import var
-from math import e
 def root_m(fx,xi,fx1,fx2,tol,optiontol,nitera):
     x = var('x')
     fx = sympy.sympify(fx)

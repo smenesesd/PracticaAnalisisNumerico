@@ -5,7 +5,8 @@ from math import e
 def secant(fx,x1,x2,tol,optiontol,nitera):
     x = var('x')
     fx = sympy.sympify(fx)
-    table = ["ite", "x", "f(x)","error"]
+    print(fx)
+    table = [["ite", "x", "f(x)","error"]]
     x1 = float(x1)
     x2 = float(x2)
     tol = float(tol)
