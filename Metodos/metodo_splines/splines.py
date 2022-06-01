@@ -16,4 +16,4 @@ def splines_l(nx, ny):
 xi = [0.1,0.2,0.3,0.4]
 fi = [1.45, 1.8, 1.7, 2]
 
-splines_l(xi, fi)
+print(splines_l(xi, fi))

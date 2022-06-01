@@ -55,11 +55,11 @@ class metodo_vander(View):
             resultado =""
             try:
                 resultado = vandermonde(resultadoA[0],resultadoB[0])
-                resultado1 = resultado.tolist()
-                print(resultado1)
+                #resultado1 = resultado.tolist()
+                #print(resultado1)
                 lista =[]
                 j = 1
-                for i in resultado1:
+                for i in resultado:
                     lis = []
                     pal = str(i)
                     pal1= "X"+str(j)
@@ -99,19 +99,10 @@ class metodo_internewton(View):
             resultado =""
             try:
                 resultado = dif_dividas(resultadoA[0],resultadoB[0])
-                resultado1 = resultado.tolist()
-                print(resultado1)
-                lista =[]
-                j = 1
-                for i in resultado1:
-                    lis = []
-                    pal = str(i)
-                    pal1= "X"+str(j)
-                    lis.append(pal1)
-                    lis.append(pal)
-                    lista.append(lis)
-                    j +=1
-                return render(request,'diferencias/diferencias_response.html',{'tabla':lista})
+                #resultado1 = resultado.tolist()
+                #print(resultado1)
+                
+                return render(request,'diferencias/diferencias_response.html',{'tabla':resultado})
             except Exception as e:
                 messages.error(request, "Error en el metodo")
                 print(e)
@@ -143,6 +134,7 @@ class metodo_spline(View):
             resultado =""
             try:
                 resultado = splines_l(resultadoA[0],resultadoB[0])
+                print(resultado)
                 return render(request,'splines/splines_response.html',{'tabla':resultado})
             except Exception as e:
                 messages.error(request, "Error en el metodo")
