@@ -14,11 +14,11 @@
                 <div class = "opciones">
                     <label for="{{form.matrizA.id_for_label}}">MatrizA</label>
                     <div class="form-warp">
-                        {{form.funcion}}
+                        {{form.matrizA}}
                     </div>
-                    {% if form.funcion.errors %}
+                    {% if form.matrizA.errors %}
                     <ul>
-                        {% for error in form.funcion.errors %}
+                        {% for error in form.matrizA.errors %}
                             <li class="errores">{{error}}</li>
                         {% endfor %}
                     </ul>
@@ -27,11 +27,11 @@
                 <div class = "opciones">
                     <label for="{{form.matrizB.id_for_label}}">MatrizB</label>
                     <div class="form-warp">
-                        {{form.xi}}
+                        {{form.matrizB}}
                     </div>
-                    {% if form.xi.errors %}
+                    {% if form.matrizB.errors %}
                     <ul>
-                        {% for error in form.xi.errors %}
+                        {% for error in form.matrizB.errors %}
                             <li class="errores">{{error}}</li>
                         {% endfor %}
                     </ul>
@@ -40,11 +40,11 @@
                 <div class = "opciones">
                     <label for="{{form.tam.id_for_label}}">n</label>
                     <div class="form-warp">
-                        {{form.maxite}}
+                        {{form.tam}}
                     </div>
-                    {% if form.maxite.errors %}
+                    {% if form.tam.errors %}
                     <ul>
-                        {% for error in form.maxite.errors %}
+                        {% for error in form.tam.errors %}
                             <li class="errores">{{error}}</li>
                         {% endfor %}
                     </ul>
